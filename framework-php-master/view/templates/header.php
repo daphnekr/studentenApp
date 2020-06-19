@@ -16,12 +16,11 @@
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle nav">
         <i class="fas fa-lg fa-bars"></i>
     </button>
-	<div class="collapse navbar-collapse nav text-left text-light" id="navbarCollapse">
-		<ul class="w-100">
-			<li class="d-inline pt-lg-5 pr-lg-5 pt-2 pr-2"><a href="<?= URL ?>home/index">Home</a></li>
-			<li class="d-inline pt-lg-5 pr-lg-5 pt-2 pr-2"><a href="<?= URL ?>student/index">Students</a></li>
-			<li class="d-inline pt-lg-5 pr-lg-5 pt-2 pr-2"><a href="<?= URL ?>agenda/index">Agenda</a></li>
-			<li class="d-inline float-right"><a href="<?= URL ?>student/create"><i class="fas fa-user-plus"></i></a></li>
+	<div class="collapse navbar-collapse nav text-left" id="navbarCollapse">
+		<ul class="w-100 p-0 m-lg-0 mt-3 mb-0">
+			<li class="d-inline pt-lg-5 pr-lg-5 pt-2 pr-2"><a class="text-white h5" href="<?= URL ?>home/index">Home</a></li>
+			<li class="d-inline pt-lg-5 pr-lg-5 pt-2 pr-2"><a class="text-white h5" href="<?= URL ?>home/agenda">Agenda</a></li>
+			<li class="d-inline float-right"><a class="text-white text-decoration-none" href="<?= URL ?>home/createStudent"><i class="fas fa-lg fa-user-plus"></i></a></li>
 		</ul>
 	</div>
 	</nav>
