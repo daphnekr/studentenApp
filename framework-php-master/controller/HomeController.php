@@ -3,7 +3,9 @@
 
 function index()
 {
-	render("home/index");	
+	render("home/index", array(
+		'student' => getAllStudents()
+	));	
 }
 
 function agenda()
