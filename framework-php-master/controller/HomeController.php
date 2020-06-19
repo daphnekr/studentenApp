@@ -44,6 +44,14 @@ function createStudent()
 {
 	render("home/createStudent");
 }
+function addStudent()
+{
+	$VN = $_POST['voornaam'];
+	$AN = $_POST['achternaam'];
+	$EM = $_POST['mail'];
+	newStudent($VN, $AN, $EM);
+	index();
+}
 function updateStudent()
 {
 	render("home/updateStudent");
