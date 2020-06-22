@@ -26,8 +26,6 @@ function getAllGroups(){
 	return $stmt->fetchAll();
 }
 
-<?php
-
 
 function newStudent($data1, $data2, $data3)
 {
