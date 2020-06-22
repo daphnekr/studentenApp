@@ -1,11 +1,11 @@
 <?php
-	require(ROOT . "model/HomeModel.php");
+require(ROOT . "model/HomeModel.php");
 
 function index()
 {
-	render("home/index", array(
-		'student' => getAllStudents()
-	));	
+	$students = getAllStudents();
+	$groups = getAllGroups();
+	render("home/index", ["students" => $students, "groups" => $groups]);	
 }
 
 function agenda()
