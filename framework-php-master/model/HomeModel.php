@@ -4,7 +4,7 @@
 function getAllStudents(){
 	$conn = openDatabaseConnection();
 
-    $stmt = $conn->prepare("SELECT studenten.id AS studenten_id, studenten.* FROM studenten JOIN klassen ON studenten.klas_id = klassen.id");
+    $stmt = $conn->prepare("SELECT studenten.id AS studenten_id, studenten.*, klassen.* FROM studenten JOIN klassen ON studenten.klas_id = klassen.id");
     
 
 	$stmt->execute();
