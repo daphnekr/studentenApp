@@ -7,6 +7,18 @@ function index()
 	$groups = getAllGroups();
 	render("home/index", ["students" => $students, "groups" => $groups]);	
 }
+function deleteStudent($id)
+{
+	$student = getStudent($id);
+	render("home/deleteStudent", ['student' => $student]);
+}
+
+function destroyStudent($id){
+    deleteStudentById($id);
+	$students = getAllStudents();
+	$groups = getAllGroups();
+	render("home/index", ["students" => $students, "groups" => $groups]);	
+}
 
 function agenda()
 {
