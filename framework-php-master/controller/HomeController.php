@@ -57,7 +57,17 @@ function updateLes()
 //Planning
 function createPlanning()
 {
-	render("home/createPlanning");
+	$students = getAllStudents();
+	$lessen = getAllClasses();
+	render("home/createPlanning", ["students" => $students, "lessen" => $lessen]);	
+
+}
+function addPlanning()
+{
+	$student = $_POST['studentNaam'];
+	$les = $_POST['les'];
+	newPlanning($student, $les);
+	agenda();
 }
 function updatePlanning()
 {

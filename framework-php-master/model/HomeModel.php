@@ -53,7 +53,7 @@ function getStudent($id){
  
     return $result;
  }
-
+// studenten verwijderen uit database met een aangegeven id
  function deleteStudentById($id){
     $conn = openDatabaseConnection();
 
@@ -64,7 +64,7 @@ function getStudent($id){
 
     $conn = null;
  }
-
+// alle leraren ophalen uit database
  function getAllTeachers(){
 	$conn = openDatabaseConnection();
 
@@ -88,7 +88,7 @@ function getStudentandClass($id)
 
 	return $stmt->fetch();
 }
-
+// tijd aanmaken, als tijd al bestaat wordt hij niet opnieuw aangemaakt maar gebruikt
  function createTime($tijd)
  {
 	$conn = openDatabaseConnection();
@@ -100,7 +100,7 @@ function getStudentandClass($id)
         return $query->execute(["tijd" => $tijd]);
     } 
  }
-
+// nieuwe les toevoegen
  function newLes($data1, $data2, $data3)
  {
 	$conn = openDatabaseConnection();
@@ -127,4 +127,27 @@ function editStudent($data1, $data2, $data3, $data4, $data5)
     $stmt->execute();
 
     $conn = null;
+}
+
+function getAllClasses(){
+	$conn = openDatabaseConnection();
+
+	$stmt = $conn->prepare("SELECT * FROM lessen JOIN tijden on lessen.tijd_id = tijden.id");
+	$stmt->execute();
+
+	$conn = null;
+
+	return $stmt->fetchAll();
+}
+
+function newPlanning($data1, $data2)
+{
+	$conn = openDatabaseConnection();
+	
+	$stmt = $conn->prepare("INSERT INTO planning (student_id, les_id) VALUES (:student_id, :les_id)");
+	$stmt->bindParam(":student_id", $data1);
+	$stmt->bindParam(":les_id", $data2);
+	$stmt->execute();
+	
+	$conn = null;
 }
