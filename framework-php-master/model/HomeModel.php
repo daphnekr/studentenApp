@@ -65,6 +65,17 @@ function getStudent($id){
     $conn = null;
  }
 
+ function getAllTeachers(){
+	$conn = openDatabaseConnection();
+
+	$stmt = $conn->prepare("SELECT * FROM leraar");
+	$stmt->execute();
+
+	$conn = null;
+
+	return $stmt->fetchAll();
+}
+
 function getStudentandClass($id)
 {
     $conn = openDatabaseConnection();
@@ -72,7 +83,11 @@ function getStudentandClass($id)
     $stmt = $conn->prepare("SELECT studenten.*, klassen.groepnaam AS klas_naam FROM studenten JOIN klassen ON studenten.klas_id = klassen.id WHERE studenten.id = :id");
     $stmt->bindParam(":id", $id);
     $stmt->execute();
-    $result = $stmt->fetch();
+	$result = $stmt->fetch();
+	$conn = null;
+
+	return $stmt->fetch();
+}
 
  function createTime($tijd)
  {
