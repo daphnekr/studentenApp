@@ -6,8 +6,9 @@ require(ROOT . "model/PlanningModel.php");
 
 function agenda()
 {
+	$tijden = getTime();
 	$planning = getPlanning();
-	render("planning/agenda", ["planning" => $planning]);
+	render("planning/agenda", ["planning" => $planning, "tijden" => $tijden]);
 }
 
 function createPlanning()
@@ -27,4 +28,4 @@ function addPlanning()
 function updatePlanning()
 {
 	render("planning/updatePlanning");
-}
+} 

@@ -17,9 +17,9 @@ function addLes()
 	$leraar = $_POST['leraar'];
 	createTime($tijd);
 	newLes($les, $tijd, $leraar);
-	$students = getAllStudents();
-	$groups = getAllGroups();
-	render("home/index", ["students" => $students, "groups" => $groups]);	
+	$tijden = getTime();
+	$planning = getPlanning();
+	render("planning/agenda", ["planning" => $planning, "tijden" => $tijden]);
 
 }
 function updateLes()

@@ -25,3 +25,16 @@ function newLes($data1, $data2, $data3)
    
    $conn = null;
 }
+
+function getTime()
+{
+   $conn = openDatabaseConnection();
+
+   $stmt = $conn->prepare("SELECT lessen.id AS les_id, lessen.*, tijden.*, leraar.* FROM lessen JOIN tijden ON lessen.tijd_id = tijden.id JOIN leraar ON lessen.leraar_id = leraar.id ORDER BY tijd");
+
+  $stmt->execute();
+
+  $conn = null;
+
+  return $stmt->fetchAll();
+}
