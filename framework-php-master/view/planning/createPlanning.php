@@ -5,7 +5,7 @@
                 <label for="studentNaam">Student naam</label> <br>
                 <select name="studentNaam">
                     <?php foreach($students as $student){?>
-                        <option value="<?php echo htmlentities($student["id"])?>"><?php echo htmlentities($student["voornaam"]), " ", htmlentities($student["achternaam"])?></option>
+                        <option value="<?php echo htmlentities($student["studenten_id"])?>"><?php echo htmlentities($student["voornaam"]), " ", htmlentities($student["achternaam"]) ?></option>
                     <?php } ?>
                     </select>
             </div>
@@ -13,7 +13,7 @@
                 <label for="les">Les</label> <br>
                 <select name="les">
                     <?php foreach($lessen as $les){?>
-                        <option value="<?php echo htmlentities($les["id"])?>"><?php echo htmlentities($les["les"]), " om ", date('H:i', strtotime($les["tijd"])), " uur" ?></option>
+                        <option value="<?php echo htmlentities($les["lessen_id"])?>"><?php echo htmlentities($les["les"]), " om ", date('H:i', strtotime($les["tijd"])), " uur" ?></option>
                     <?php } ?>
                     </select>
             </div>
