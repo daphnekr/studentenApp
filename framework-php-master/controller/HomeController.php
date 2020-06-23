@@ -66,14 +66,16 @@ function updatePlanning()
 //Student
 function createStudent()
 {
-	render("home/createStudent");
+	$klas = getAllGroups();
+	render("home/createStudent", ["klas" => $klas]);
 }
 function addStudent()
 {
 	$VN = $_POST['voornaam'];
 	$AN = $_POST['achternaam'];
 	$EM = $_POST['mail'];
-	newStudent($VN, $AN, $EM);
+	$KL = $_POST['klas'];
+	newStudent($VN, $AN, $EM, $KL);
 	index();
 }
 function updateStudent($id)

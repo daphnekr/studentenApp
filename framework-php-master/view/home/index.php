@@ -19,6 +19,7 @@
                         <b>E-mailadres:</b><br>
                         <b>Klas:</b><br>                        
                         <a class = "text-danger" href="<?= URL?>home/deletestudent/<?= $student['studenten_id']; ?>"><i class="fas fa-times"></i> Verwijder student</a> <br>
+                        <a class = "text-primary" href="<?= URL?>home/updateStudent/<?= $student['studenten_id']; ?>"><i class="fas fa-edit"></i>Update student</a> <br>
                     </div>
                     <div class = "col">
                         <?= $student['voornaam']; ?> <br>

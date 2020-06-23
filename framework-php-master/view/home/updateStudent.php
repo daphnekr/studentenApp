@@ -1,5 +1,5 @@
 <div class="form-container col-8 col-md-6 col-lg-4 offset-2 offset-md-3 offset-lg-4 mt-4">
-        <form action="<?= URL ?>home/modifyStudent/<?= $student['id']?>" method="post" name="update" autocomplete="off">
+        <form action="<?= URL ?>home/editStudent/<?= $student['id']?>" method="post" name="update" autocomplete="off">
             <div class="form-group text-center text-dark">
                 <label for="voornaam">Voornaam</label>
                     <input class="form-control" type="text" name="voornaam" value="<?= $student['voornaam']?>" required>
