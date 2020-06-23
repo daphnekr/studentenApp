@@ -16,10 +16,16 @@
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle nav">
         <i class="fas fa-lg fa-bars"></i>
     </button>
-	<div class="collapse navbar-collapse nav text-left" id="navbarCollapse">
+	<div class="collapse navbar-collapse nav text-left" id="navbarCollapse" aria-label="Button group with nested dropdown">
 		<ul class="w-100 p-0 m-lg-0 mt-3 mb-0">
 			<li class="d-inline pt-lg-5 pr-lg-5 pt-2 pr-2"><a class="text-white h5" href="<?= URL ?>home/index">Home</a></li>
-			<li class="d-inline pt-lg-5 pr-lg-5 pt-2 pr-2"><a class="text-white h5" href="<?= URL ?>home/agenda">Agenda</a></li>
+			<li id="btnGroupDrop1" class="d-inline pt-lg-5 pr-lg-5 pt-2 pr-2 dropdown-toggle" data-toggle="dropdown"><a class="text-white h5" >Agenda</a></li>
+			<div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+				<a class="dropdown-item" href="<?= URL ?>home/agenda">Agenda</a>
+				<a class="dropdown-item" href="<?= URL ?>home/createPlanning">Planning maken</a>
+			</div>
+			<li class="d-inline pt-lg-5 pr-lg-5 pt-2 pr-2"><a class="text-white h5" href="<?= URL ?>home/createLes">Lessen</a></li>
+			<li class="d-inline pt-lg-5 pr-lg-5 pt-2 pr-2"><a class="text-white h5" href="<?= URL ?>home/createLeraar">Leraren</a></li>
 			<li class="d-inline float-right"><a class="text-white text-decoration-none" href="<?= URL ?>home/createStudent"><i class="fas fa-lg fa-user-plus"></i></a></li>
 		</ul>
 	</div>

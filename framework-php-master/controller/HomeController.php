@@ -36,7 +36,19 @@ function updateLeraar()
 //Les
 function createLes()
 {
-	render("home/createLes");
+	$leraren = getAllTeachers();
+	render("home/createLes", ["leraren" => $leraren]);
+}
+
+function addLes()
+{
+	$les = $_POST['les'];
+	$tijd = $_POST['tijd'];
+	$leraar = $_POST['leraar'];
+	createTime($tijd);
+	newLes($les, $tijd, $leraar);
+	index();
+
 }
 function updateLes()
 {
@@ -64,9 +76,20 @@ function addStudent()
 	newStudent($VN, $AN, $EM);
 	index();
 }
-function updateStudent()
+function updateStudent($id)
 {
-	render("home/updateStudent");
+	$klas = getAllGroups();
+	$student = getStudentandClass($id);
+	render("home/updateStudent", ["klas" => $klas, "student" => $student]);
+}
+function modifyStudent($id)
+{
+	$VN = $_POST['voornaam'];
+	$AN = $_POST['achternaam'];
+	$EM = $_POST['mail'];
+	$KL = $_POST['klas'];
+	editStudent($VN, $AN, $EM, $KL, $id);
+	index();
 }
 
 
