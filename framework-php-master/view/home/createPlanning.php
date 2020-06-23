@@ -1,4 +1,5 @@
 <div class="form-container col-8 col-md-6 col-lg-4 offset-2 offset-md-3 offset-lg-4 mt-4">
+<h1 class = "text-danger text-center"> Planning toevoegen</h1>
         <form action="addPlanning" method="post" name="Sign-Up" autocomplete="off">
             <div class="form-group text-center text-dark">
                 <label for="studentNaam">Student naam</label> <br>
