@@ -54,19 +54,32 @@ function updatePlanning()
 //Student
 function createStudent()
 {
-	render("home/createStudent");
+	$klas = getAllGroups();
+	render("home/createStudent", ["klas" => $klas]);
 }
 function addStudent()
 {
 	$VN = $_POST['voornaam'];
 	$AN = $_POST['achternaam'];
 	$EM = $_POST['mail'];
-	newStudent($VN, $AN, $EM);
+	$KL = $_POST['klas'];
+	newStudent($VN, $AN, $EM, $KL);
 	index();
 }
-function updateStudent()
+function updateStudent($id)
 {
-	render("home/updateStudent");
+	$klas = getAllGroups();
+	$student = getStudentandClass($id);
+	render("home/updateStudent", ["klas" => $klas, "student" => $student]);
+}
+function modifyStudent($id)
+{
+	$VN = $_POST['voornaam'];
+	$AN = $_POST['achternaam'];
+	$EM = $_POST['mail'];
+	$KL = $_POST['klas'];
+	editStudent($VN, $AN, $EM, $KL, $id);
+	index();
 }
 
 
