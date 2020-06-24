@@ -18,7 +18,9 @@ function addTeacher()
 	newTeacher($VN, $AN, $KL);
 	createLeraar();
 }
-function updateLeraar()
+function updateLeraar($id)
 {
-	render("leraar/updateLeraar");
+	$slb = getOneTeacher($id);
+	$klas = getAllGroups();
+	render("leraar/updateLeraar", ["klas" => $klas, "slb" => $slb]);
 }
