@@ -4,7 +4,7 @@
 function getAllTeachers(){
 	$conn = openDatabaseConnection();
 
-	$stmt = $conn->prepare("SELECT leraar.*, klassen.groepnaam AS klas FROM leraar JOIN klassen ON klassen.`slb'er_id` = leraar.id");
+	$stmt = $conn->prepare("SELECT * FROM leraar ORDER BY achternaam");
 	$stmt->execute();
 
 	$conn = null;
@@ -22,4 +22,16 @@ function newTeacher($data1, $data2, $data3)
 	$stmt->execute();
 
 	$conn = null;
+}
+
+function getTeachersWithGroup()
+{
+	$conn = openDatabaseConnection();
+
+	$stmt = $conn->prepare("SELECT klassen.*, leraar.* FROM klassen JOIN leraar ON klassen.`slb'er_id` = leraar.id");
+	$stmt->execute();
+
+	$conn = null;
+
+	return $stmt->fetchAll();
 }
