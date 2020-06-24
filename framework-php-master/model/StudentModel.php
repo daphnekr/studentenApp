@@ -16,7 +16,7 @@ function getAllStudents(){
 function getAllGroups(){
 	$conn = openDatabaseConnection();
 
-	$stmt = $conn->prepare("SELECT * FROM klassen ORDER BY groepnaam DESC");
+	$stmt = $conn->prepare("SELECT * FROM klassen ORDER BY groepnaam ASC");
 	$stmt->execute();
 
 	$conn = null;

@@ -6,7 +6,17 @@ require(ROOT . "model/PlanningModel.php");
 
 function createLeraar()
 {
-	render("leraar/createLeraar");
+	$klas = getAllGroups();
+	$slb = getAllTeachers();
+	render("leraar/createLeraar", ["klas" => $klas, "slb" => $slb]);
+}
+function addTeacher()
+{
+	$VN = $_POST['voornaam'];
+	$AN = $_POST['achternaam'];
+	$KL = $_POST['klas'];
+	newTeacher($VN, $AN, $KL);
+	createLeraar();
 }
 function updateLeraar()
 {

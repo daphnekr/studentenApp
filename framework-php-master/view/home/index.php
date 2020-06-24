@@ -26,11 +26,7 @@
                         <?= $student['achternaam']; ?> <br>
                         <?= $student['e-mail']; ?> <br>
                         <?= $student['groepnaam']; ?> <br>                    
-
-                    </div>
-
-
-                    
+                    </div> 
                 </div>
             <hr>
             <?php
