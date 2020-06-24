@@ -2,15 +2,15 @@
 <h1 class = "text-danger text-center"> Les toevoegen</h1>
         <form action="addLes" method="post" name="Sign-Up" autocomplete="off">
             <div class="form-group text-center text-dark">
-                <label for="les">Les</label>
+                <label for="les"><h3>Les</h3></label>
                     <input class="form-control" type="text" name="les" required>
             </div>
             <div class="form-group text-center text-dark">
-                <label for="tijd">Tijd</label>
+                <label for="tijd"><h3>Tijd</h3></label>
                     <input class="form-control" type="time" name="tijd" required>
             </div>
             <div class="form-group text-center text-dark">
-                <label for="leraar">Leraar</label> <br>
+                <label for="leraar"><h3>Leraar</h3></label> <br>
                 <select name="leraar">
                     <?php foreach($leraren as $leraar){?>
                         <option value="<?php echo htmlentities($leraar["id"])?>"><?php echo htmlentities($leraar["voornaam"]), " ", htmlentities($leraar["achternaam"])?></option>

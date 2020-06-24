@@ -8,7 +8,8 @@ function createLeraar()
 {
 	$klas = getAllGroups();
 	$slb = getAllTeachers();
-	render("leraar/createLeraar", ["klas" => $klas, "slb" => $slb]);
+	$slbklas = getTeachersWithGroup();
+	render("leraar/createLeraar", ["klas" => $klas, "slb" => $slb, "slbklassen" => $slbklas]);
 }
 function addTeacher()
 {
