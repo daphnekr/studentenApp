@@ -22,8 +22,4 @@ function addLes()
 	render("planning/agenda", ["planning" => $planning, "tijden" => $tijden]);
 
 }
-function updateLes()
-{
-	render("les/updateLes");
-}
 
