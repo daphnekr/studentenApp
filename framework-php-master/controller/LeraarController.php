@@ -25,3 +25,11 @@ function updateLeraar($id)
 	$klas = getAllGroups();
 	render("leraar/updateLeraar", ["klas" => $klas, "slb" => $slb]);
 }
+function modifyTeacher($id)
+{
+	$VN = $_POST['voornaam'];
+	$AN = $_POST['achternaam'];
+	$KL = $_POST['klas'];
+	editTeacher($VN, $AN, $KL, $id);
+	createLeraar();
+}

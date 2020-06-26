@@ -13,7 +13,7 @@ function getAllTeachers(){
 function getOneTeacher($data1){
 	$conn = openDatabaseConnection();
 
-	$stmt = $conn->prepare("SELECT leraar.*, klassen.groepnaam AS klas FROM leraar JOIN klassen ON klassen.`slb'er_id` = leraar.id WHERE leraar.id=:id");
+	$stmt = $conn->prepare("SELECT * FROM leraar WHERE leraar.id=:id");
 	$stmt->bindParam(":id", $data1);
 	$stmt->execute();
 
@@ -71,4 +71,30 @@ function getTeachersWithGroup()
 	$conn = null;
 
 	return $stmt->fetchAll();
+}
+
+function editTeacher($data1, $data2, $data3, $data4)
+{
+	$conn = openDatabaseConnection();
+
+	$stmt = $conn->prepare("UPDATE leraar SET voornaam=:VN, achternaam=:AN WHERE id=:id");
+	$stmt->bindParam(":VN", $data1);
+	$stmt->bindParam(":AN", $data2);
+	$stmt->bindParam(":id", $data4);
+	$stmt->execute();
+
+	if($data3 != NULL){
+		$stmt1 = $conn->prepare("UPDATE klassen SET `slb'er_id`=:id WHERE groepnaam=:KL");
+		$stmt1->bindParam(":KL", $data3);
+		$stmt1->bindParam(":id", $data4);
+		$stmt1->execute();
+	}
+	elseif($data3 == NULL){
+		$stmt2 = $conn->prepare("DELETE FROM klassen WHERE `slb'er_id`=:id");
+		$stmt2->bindParam(":id", $data4);
+		$stmt2->execute();
+	}
+
+	$conn = null;
+
 }
