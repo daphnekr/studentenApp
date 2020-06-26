@@ -69,8 +69,8 @@ function getPlanningById($id)
 {
 	$conn = openDatabaseConnection();
 
-    $stmt = $conn->prepare("SELECT planning.id AS planning_id, planning.*, studenten.*, lessen.*, tijden.* FROM planning 
-	JOIN studenten ON planning.student_id = studenten.id 
+    $stmt = $conn->prepare("SELECT planning.id AS planning_id, planning.*, klassen.*, lessen.*, tijden.* FROM planning
+	JOIN klassen ON planning.klas_id = klassen.id 
 	JOIN lessen ON planning.les_id = lessen.id 
 	JOIN tijden ON lessen.tijd_id = tijden.id WHERE planning.id = :id");
     

@@ -2,10 +2,10 @@
 <h1 class = "text-danger text-center"> Planning toevoegen</h1>
         <form action="addPlanning" method="post" name="Sign-Up" autocomplete="off">
             <div class="form-group text-center text-dark">
-                <label for="studentNaam"><h3>Student naam</h3></label> <br>
-                <select name="studentNaam">
-                    <?php foreach($students as $student){?>
-                        <option value="<?php echo htmlentities($student["studenten_id"])?>"><?php echo htmlentities($student["voornaam"]), " ", htmlentities($student["achternaam"]) ?></option>
+                <label for="groepNaam"><h3>Groepnaam</h3></label> <br>
+                <select name="groepNaam">
+                    <?php foreach($klassen as $klas){?>
+                        <option value="<?php echo htmlentities($klas["id"])?>"><?php echo htmlentities($klas["groepnaam"]), " ", htmlentities($student["achternaam"]) ?></option>
                     <?php } ?>
                     </select>
             </div>
