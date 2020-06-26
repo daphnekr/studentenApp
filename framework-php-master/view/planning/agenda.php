@@ -3,10 +3,10 @@
 
 <div class = "row pt-5">
 <?php foreach ($tijden as $tijd){ ?>
-    <div class = "col border m-2">
+    <div class = "col-4 border mb-2">
         <h2><?= $tijd['les']; ?> om <?= date('H:i', strtotime($tijd["tijd"])), " uur"; $les_id = $tijd['les_id']; ?><br> </h2>
         <h4>Leraar: <?= $tijd['voornaam'], " ", $tijd['achternaam']; ?> </h4>
-        <a class = "text-primary" href="<?= URL?>student/updatePlanning/<?= $tijd['studenten_id']; ?>"><i class="fas fa-info-circle"></i></a> <br>
+        <a class = "text-primary" href="<?= URL?>planning/updatePlanning/<?= $tijd['les_id']; ?>"><i class="fas fa-edit"></i></a>
         <hr>
         <?php 
         foreach($planning as $plan){
@@ -14,7 +14,8 @@
                 ?>
                     <div class = "col">                
                     <ul>
-                        <li><?= $plan['voornaam'], " ", $plan['achternaam']; ?> <br>               
+                        <li>
+                        <?= $plan['voornaam'], " ", $plan['achternaam']; ?> <a class = "text-primary" href="<?= URL?>planning/deletePlanning/<?= $plan['planning_id']; ?>"><i class="fas fa-times"></i></a> </li>            
                     </ul>
                     </div>
             <?php

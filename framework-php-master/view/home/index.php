@@ -3,7 +3,7 @@
 
 <div class = "row">
 <?php foreach ($groups as $group){ ?>
-    <div class = "col">
+    <div class = "col-4">
         <h2><?= $group['groepnaam']; $groep_id = $group['id']?> </h2>
         <hr>
         <?php 
@@ -18,8 +18,8 @@
                         <b>Achternaam:</b><br>
                         <b>E-mailadres:</b><br>
                         <b>Klas:</b><br>                        
-                        <a class = "text-danger" href="<?= URL?>student/deletestudent/<?= $student['studenten_id']; ?>"><i class="fas fa-times"></i> Verwijder student</a> <br>
-                        <a class = "text-primary" href="<?= URL?>student/updateStudent/<?= $student['studenten_id']; ?>"><i class="fas fa-edit"></i>Update student</a> <br>
+                        <a class = "text-danger" href="<?= URL?>student/deletestudent/<?= $student['studenten_id']; ?>"><i class="fas fa-times"></i></a> <br>
+                        <a class = "text-primary" href="<?= URL?>student/updateStudent/<?= $student['studenten_id']; ?>"><i class="fas fa-edit"></i></a> <br>
                     </div>
                     <div class = "col">
                         <?= $student['voornaam']; ?> <br>
