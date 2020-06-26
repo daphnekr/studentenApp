@@ -5,6 +5,6 @@
 
     <div> 
         <a href= "<?= URL ?>home/index" class  = "btn btn-info">Nee</a>
-        <a href= "<?= URL ?>student/destroyStudent/<?= $student['id']; ?>" class = "btn btn-danger">Ja</a>
+        <a href= "<?= URL ?>student/destroyStudent/<?= $student['studenten_id']; ?>" class = "btn btn-danger">Ja</a>
     </div>
 </div>
