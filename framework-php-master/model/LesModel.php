@@ -41,7 +41,7 @@ function getTime()
 {
    $conn = openDatabaseConnection();
 
-   $stmt = $conn->prepare("SELECT lessen.id AS les_id, lessen.*, tijden.*, leraar.* FROM lessen JOIN tijden ON lessen.start_tijd_id=tijden.id JOIN leraar ON lessen.leraar_id = leraar.id ORDER BY tijd");
+   $stmt = $conn->prepare("SELECT lessen.id AS les_id, lessen.*, tijden.*, leraar.* FROM lessen JOIN tijden ON lessen.tijd_id=tijden.id JOIN leraar ON lessen.leraar_id = leraar.id ORDER BY tijd");
 
   $stmt->execute();
 
