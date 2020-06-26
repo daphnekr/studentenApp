@@ -4,8 +4,7 @@
 function getAllTeachers(){
 	$conn = openDatabaseConnection();
 
-<<<<<<< HEAD
-	$stmt = $conn->prepare("SELECT leraar.*, klassen.* FROM leraar LEFT OUTER JOIN klassen ON leraar.id = klassen.`slb'er_id`");
+	$stmt = $conn->prepare("SELECT leraar.*, klassen.*, leraar.id AS updateID FROM leraar LEFT OUTER JOIN klassen ON leraar.id = klassen.`slb'er_id`");
 	$stmt->execute();
 	$conn = null;
 	return $stmt->fetchAll();
@@ -27,9 +26,7 @@ function getDistinctGroups(){
 	$conn = openDatabaseConnection();
 
 	$stmt = $conn->prepare("SELECT `slb'er_id` DISTINCT groepnaam FROM klassen ORDER BY groepnaam ASC");
-=======
 	$stmt = $conn->prepare("SELECT * FROM leraar ORDER BY achternaam");
->>>>>>> master
 	$stmt->execute();
 
 	$conn = null;
