@@ -4,7 +4,7 @@
 function getAllTeachers(){
 	$conn = openDatabaseConnection();
 
-	$stmt = $conn->prepare("SELECT leraar.*, klassen.*, leraar.id AS updateID FROM leraar LEFT OUTER JOIN klassen ON leraar.id = klassen.`slb'er_id`");
+	$stmt = $conn->prepare("SELECT DISTINCT * FROM leraar");
 	$stmt->execute();
 	$conn = null;
 	return $stmt->fetchAll();
@@ -43,17 +43,19 @@ function newTeacher($data1, $data2, $data3)
 	$stmt->bindParam(":AN", $data2);
 	$stmt->execute();
 
-	$stmt1 = $conn->prepare("SELECT * FROM klassen WHERE groepnaam=:KL");
-	$stmt1->bindParam(":KL", $data3);
-	$stmt1->execute();
-	$result = $stmt1->fetchAll();
+	if($data3 != NULL){
+		$stmt1 = $conn->prepare("SELECT * FROM klassen WHERE groepnaam=:KL");
+		$stmt1->bindParam(":KL", $data3);
+		$stmt1->execute();
+		$result = $stmt1->fetchAll();
 
-	if($result == false)
-	{
-		$stmt2 = $conn->prepare("INSERT INTO klassen (groepnaam, `slb'er_id`) VALUES (:KL, (SELECT id FROM leraar WHERE voornaam=:VN))");
-		$stmt2->bindParam(":VN", $data1);
-		$stmt2->bindParam(":KL", $data3);
-		$stmt2->execute();
+		if($result == false)
+		{
+			$stmt2 = $conn->prepare("INSERT INTO klassen (groepnaam, `slb'er_id`) VALUES (:KL, (SELECT id FROM leraar WHERE voornaam=:VN))");
+			$stmt2->bindParam(":VN", $data1);
+			$stmt2->bindParam(":KL", $data3);
+			$stmt2->execute();
+		}
 	}
 
 	$conn = null;

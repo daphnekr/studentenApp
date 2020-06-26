@@ -1,7 +1,8 @@
 <div class="container">
     <div class="row">
-        <div class="col-8 text-center">
-            <div class="form-container col-12 col-md-10 col-lg-8 mt-4">
+        <div class="text-center col-12 mt-4">
+            <div class="form-container col-10 col-md-8 col-lg-6 offset-1 offset-md-2 offset-lg-3 mt-4">
+                <p class=""></p>
                 <form action="<?= URL ?>leraar/modifyTeacher/" method="post" name="add" autocomplete="off">
                     <div class="form-group text-center text-dark">
                         <label for="voornaam">Voornaam</label>
@@ -32,5 +33,3 @@
         <?php }?>
     </select>
 </datalist>
-<?php var_dump($slb)?>
-<?php var_dump($klas)?>
