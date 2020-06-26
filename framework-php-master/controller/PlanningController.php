@@ -13,21 +13,21 @@ function agenda()
 
 function createPlanning()
 {
-	$students = getAllStudents();
+	$klas = getAllGroups();
 	$lessen = getAllClasses();
-	render("planning/createPlanning", ["students" => $students, "lessen" => $lessen]);	
+	render("planning/createPlanning", ["students" => $klas, "lessen" => $lessen]);	
 
 }
 function addPlanning()
 {
-	$student = $_POST['studentNaam'];
+	$student = $_POST['groepnaam'];
 	$les = $_POST['les'];
 	$result = checkPlanning($student, $les);
 	if ($result){
 		$error = "Deze student is al ingepland bij deze les";
-		$students = getAllStudents();
+		$klas = getAllGroups();
 		$lessen = getAllClasses();
-		render("planning/createPlanning", ["students" => $students, "lessen" => $lessen, "error" => $error]);
+		render("planning/createPlanning", ["students" => $klas, "lessen" => $lessen, "error" => $error]);
 	}
 	else{
 		newPlanning($student, $les);

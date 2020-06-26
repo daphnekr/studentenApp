@@ -14,7 +14,7 @@
                     </div>
                     <div class="form-group text-center text-dark">
                         <label for="klas">Klas</label>
-                            <input class="form-control" type="text" name="klas">
+                            <input class="form-control" list="klassen" name="klas">
                     </div>
                     <div class="form-group text-center">
                         <input type="submit" value="Teach!" class="form-submit col-4 col-lg-3">
@@ -46,3 +46,11 @@
         </div>
     </div>
 </div>
+
+<datalist id="klassen">
+    <select name="klassen">
+        <?php foreach($klas as $group){?>
+            <option value="<?= $group['groepnaam']?>"><?= $group['groepnaam']?></option>
+        <?php }?>
+    </select>
+</datalist>

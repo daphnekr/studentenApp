@@ -18,9 +18,8 @@
                         <b>Achternaam:</b><br>
                         <b>E-mailadres:</b><br>
                         <b>Klas:</b><br>                        
-                        <a class = "text-danger" href="<?= URL?>student/deletestudent/<?= $student['studenten_id']; ?>"><i class="fas fa-times"></i></a> 
-                        <a class = "text-primary" href="<?= URL?>student/updateStudent/<?= $student['studenten_id']; ?>"><i class="fas fa-edit"></i></a> 
-                        <a class = "text-dark" href="<?= URL?>student/detailStudent/<?= $student['studenten_id']; ?>"><i class="fas fa-info-circle"></i></a> 
+                        <a class = "text-danger" href="<?= URL?>student/deletestudent/<?= $student['studenten_id']; ?>"><i class="fas fa-times"></i></a> <br>
+                        <a class = "text-primary" href="<?= URL?>student/updateStudent/<?= $student['studenten_id']; ?>"><i class="fas fa-edit"></i></a> <br>
                     </div>
                     <div class = "col">
                         <?= $student['voornaam']; ?> <br>

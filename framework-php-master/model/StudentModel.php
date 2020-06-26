@@ -28,7 +28,7 @@ function newStudent($data1, $data2, $data3, $data4)
 {
 	$conn = openDatabaseConnection();
 	
-	$stmt = $conn->prepare("INSERT INTO studenten (voornaam, achternaam, `e-mail`, `slb'er_id`, klas_id) VALUES (:VN, :AN, :EM, 1, (SELECT id FROM klassen WHERE groepnaam=:KL))");
+	$stmt = $conn->prepare("INSERT INTO studenten (voornaam, achternaam, `e-mail`, klas_id) VALUES (:VN, :AN, :EM, (SELECT id FROM klassen WHERE groepnaam=:KL))");
 	$stmt->bindParam(":VN", $data1);
 	$stmt->bindParam(":AN", $data2);
 	$stmt->bindParam(":EM", $data3);
@@ -42,9 +42,7 @@ function newStudent($data1, $data2, $data3, $data4)
 function getStudent($id){
     $conn = openDatabaseConnection();
 
-    $stmt = $conn->prepare("SELECT studenten.*, studenten.id AS studenten_id, leraar.voornaam AS leraar_VN, leraar.achternaam AS leraar_AN, klassen.* FROM studenten 
-	JOIN leraar ON studenten.`slb'er_id` = leraar.id 
-	JOIN klassen ON studenten.klas_id = klassen.id WHERE studenten.id = :id");
+    $stmt = $conn->prepare("SELECT * FROM studenten WHERE id = :id");
     $stmt->bindParam(":id", $id);
     $stmt->execute();
     $result = $stmt->fetch();
@@ -52,22 +50,6 @@ function getStudent($id){
     $conn = null;
  
     return $result;
- }
-
- function getPlanningStudent($id)
- {
-	$conn = openDatabaseConnection();
-
-    $stmt = $conn->prepare("SELECT * FROM planning 
-	JOIN lessen ON planning.les_id = lessen.id
-	JOIN tijden ON lessen.tijd_id = tijden.id WHERE student_id = :id ORDER BY tijden.tijd");
-    $stmt->bindParam(":id", $id);
-    $stmt->execute();
-    $result = $stmt->fetchAll();
-
-    $conn = null;
- 
-    return $result; 
  }
 // studenten verwijderen uit database met een aangegeven id
  function deleteStudentById($id){

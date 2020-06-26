@@ -82,17 +82,28 @@ function editTeacher($data1, $data2, $data3, $data4)
 	$stmt->bindParam(":AN", $data2);
 	$stmt->bindParam(":id", $data4);
 	$stmt->execute();
-
 	if($data3 != NULL){
-		$stmt1 = $conn->prepare("UPDATE klassen SET `slb'er_id`=:id WHERE groepnaam=:KL");
+		$stmt1 = $conn->prepare("SELECT * FROM klassen WHERE groepnaam=:KL");
 		$stmt1->bindParam(":KL", $data3);
-		$stmt1->bindParam(":id", $data4);
 		$stmt1->execute();
+		$result = $stmt1->fetchAll();
+		if($result == false){
+			$stmt2 = $conn->prepare("INSERT INTO klassen (`slb'er_id`, groepnaam) VALUES (:id, :KL)");
+			$stmt2->bindParam(":KL", $data3);
+			$stmt2->bindParam(":id", $data4);
+			$stmt2->execute();
+		}
+		elseif($result != false){
+			$stmt3 = $conn->prepare("UPDATE klassen SET `slb'er_id`=:id WHERE groepnaam=:KL");
+			$stmt3->bindParam(":KL", $data3);
+			$stmt3->bindParam(":id", $data4);
+			$stmt3->execute();
+		}
 	}
 	elseif($data3 == NULL){
-		$stmt2 = $conn->prepare("DELETE FROM klassen WHERE `slb'er_id`=:id");
-		$stmt2->bindParam(":id", $data4);
-		$stmt2->execute();
+		$stmt4 = $conn->prepare("DELETE FROM klassen WHERE `slb'er_id`=:id");
+		$stmt4->bindParam(":id", $data4);
+		$stmt4->execute();
 	}
 
 	$conn = null;

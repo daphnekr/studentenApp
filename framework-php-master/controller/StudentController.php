@@ -36,7 +36,7 @@ function addStudent()
 function updateStudent($id)
 {
 	$klas = getAllGroups();
-	$student = getStudentandClass($id);
+	$student = getStudent($id);
 	render("student/updateStudent", ["klas" => $klas, "student" => $student]);
 }
 function modifyStudent($id)
@@ -49,11 +49,4 @@ function modifyStudent($id)
 	$students = getAllStudents();
 	$groups = getAllGroups();
 	render("home/index", ["students" => $students, "groups" => $groups]);	
-}
-
-function detailStudent($id)
-{
-	$student = getStudent($id);
-	$student_planning = getPlanningStudent($id);
-	render("student/detailStudent", ["student" => $student, "planning" => $student_planning]);
 }

@@ -6,8 +6,12 @@
                     <input class="form-control" type="text" name="les" required>
             </div>
             <div class="form-group text-center text-dark">
-                <label for="tijd"><h3>Tijd</h3></label>
-                    <input class="form-control" type="time" name="tijd" required>
+                <label for="tijd-start"><h3>Start Tijd</h3></label>
+                    <input class="form-control col-lg-2 offset-lg-5 col-4 offset-4 text-center" type="time" name="tijd-start" required>
+            </div>
+            <div class="form-group text-center text-dark">
+                <label for="tijd-eind"><h3>Eind Tijd</h3></label>
+                    <input class="form-control col-lg-2 offset-lg-5 col-4 offset-4 text-center" type="time" name="tijd-eind" required>
             </div>
             <div class="form-group text-center text-dark">
                 <label for="leraar"><h3>Leraar</h3></label> <br>

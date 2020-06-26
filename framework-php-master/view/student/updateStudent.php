@@ -15,7 +15,13 @@
             </div>
             <div class="form-group text-center text-dark">
                 <label for="Klas">Klas</label>
-                    <input class="form-control" list="klassen" name="klas" value="<?= $student['klas_naam']?>" onfocus="this.value=''" required>
+                    <input class="form-control" list="klassen" name="klas"
+                    <?php foreach($klas as $group){ ?>
+                        <?php if($group["id"] == $student['klas_id']){ ?>
+                            value="<?= $group['groepnaam']?>"
+                        <?php }?>  
+                    <?php }?> 
+                     onfocus="this.value=''" required>
             </div>
             <div class="form-group text-center">
                 <input type="submit" value="Update" class="form-submit col-4 col-lg-3">
@@ -29,3 +35,4 @@
         <?php }?>
     </select>
 </datalist>
+<?php 

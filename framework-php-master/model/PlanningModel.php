@@ -4,8 +4,8 @@ function newPlanning($data1, $data2)
 {
 	$conn = openDatabaseConnection();
 	
-	$stmt = $conn->prepare("INSERT INTO planning (student_id, les_id) VALUES (:student_id, :les_id)");
-	$stmt->bindParam(":student_id", $data1);
+	$stmt = $conn->prepare("INSERT INTO planning (klas_id, les_id) VALUES (:klas_id, :les_id)");
+	$stmt->bindParam(":klas_id", $data1);
 	$stmt->bindParam(":les_id", $data2);
 	$stmt->execute();
 	
@@ -16,7 +16,7 @@ function getPlanning()
 {
 	$conn = openDatabaseConnection();
 
-    $stmt = $conn->prepare("SELECT planning.id AS planning_id, planning.*, studenten.*, lessen.* FROM planning JOIN studenten ON planning.student_id = studenten.id JOIN lessen ON planning.les_id = lessen.id");
+    $stmt = $conn->prepare("SELECT planning.id AS planning_id, planning.*, klassen.*, lessen.* FROM planning JOIN klassen ON planning.klas_id = klassen.id JOIN lessen ON planning.les_id = lessen.id");
     
 
 	$stmt->execute();
@@ -26,11 +26,11 @@ function getPlanning()
 	return $stmt->fetchAll();
 }
 
-function checkPlanning($student, $les)
+function checkPlanning($klas, $les)
 {
 	$conn = openDatabaseConnection();
-	$stmt = $conn->prepare("SELECT * FROM planning WHERE student_id = :student AND les_id = :les");
-	$stmt->bindParam(":student", $student);
+	$stmt = $conn->prepare("SELECT * FROM planning WHERE klas_id = :klas AND les_id = :les");
+	$stmt->bindParam(":klas", $klas);
 	$stmt->bindParam(":les", $les);
 	$stmt->execute();
 	return $stmt->fetch();
