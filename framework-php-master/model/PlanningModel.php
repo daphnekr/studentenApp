@@ -16,7 +16,7 @@ function getPlanning()
 {
 	$conn = openDatabaseConnection();
 
-    $stmt = $conn->prepare("SELECT planning.id AS planning_id, planning.*, klassen.*, lessen.* FROM planning JOIN klassen ON planning.klas_id = klassen.id JOIN lessen ON planning.les_id = lessen.id");
+    $stmt = $conn->prepare("SELECT planning.id AS planning_id, planning.*, klassen.*, klassen.id AS klas_id, lessen.* FROM planning JOIN klassen ON planning.klas_id = klassen.id JOIN lessen ON planning.les_id = lessen.id");
     
 
 	$stmt->execute();
