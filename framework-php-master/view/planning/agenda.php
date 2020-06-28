@@ -15,7 +15,7 @@
                     <div class = "col">                
                     <ul>
                         <li>
-                        <?= $plan['groepnaam'] ?> <a class = "text-primary" href="<?= URL?>planning/deletePlanning/<?= $plan['planning_id']; ?>"><i class="fas fa-times"></i></a> </li>            
+                        <a class="text-dark" href="<?= URL ?>student/detailsKlas/<?= $plan['klas_id'] ?>"> <?= $plan['groepnaam'] ?></a></a> <a class = "text-danger" href="<?= URL?>planning/deletePlanning/<?= $plan['planning_id']; ?>"><i class="fas fa-times"></i></a>       
                     </ul>
                     </div>
             <?php

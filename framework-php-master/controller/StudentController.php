@@ -50,9 +50,16 @@ function modifyStudent($id)
 	$groups = getAllGroups();
 	render("home/index", ["students" => $students, "groups" => $groups]);	
 }
-function detailStudent($id)
+function detailStudent($id, $klas_id)
 {
 	$student = getStudent($id);
-	$student_planning = getPlanningStudent($id);
+	$student_planning = getPlanningStudent($klas_id);
 	render("student/detailStudent", ["student" => $student, "planning" => $student_planning]);
 } 
+
+function detailsKlas($id)
+{
+	$studenten = getStudentsFromGroup($id);
+	$group = getGroup($id);
+	render("student/detailsKlas", ["studenten" => $studenten, "klas" => $group]);
+}

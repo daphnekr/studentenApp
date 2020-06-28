@@ -41,7 +41,7 @@ function newStudent($data1, $data2, $data3, $data4)
 // Haal een student op met een aangegeven id uit de database
 function getStudent($id){
     $conn = openDatabaseConnection();
-    $stmt = $conn->prepare("SELECT studenten.*, studenten.id AS studenten_id, leraar.voornaam AS leraar_VN, leraar.achternaam AS leraar_AN, klassen.* FROM studenten 
+    $stmt = $conn->prepare("SELECT studenten.*, studenten.id AS studenten_id, leraar.voornaam AS leraar_VN, leraar.achternaam AS leraar_AN, klassen.*, klassen.id = klas_id FROM studenten 
 	JOIN klassen ON studenten.klas_id = klassen.id
 	JOIN leraar on klassen.`slb'er_id` = leraar.id WHERE studenten.id = :id");
     $stmt->bindParam(":id", $id);
@@ -57,9 +57,9 @@ function getStudent($id){
  {
 	$conn = openDatabaseConnection();
 
-    $stmt = $conn->prepare("SELECT * FROM planning 
+    $stmt = $conn->prepare("SELECT * FROM planning
 	JOIN lessen ON planning.les_id = lessen.id
-	JOIN tijden ON lessen.tijd_id = tijden.id WHERE student_id = :id ORDER BY tijden.tijd");
+	JOIN tijden ON lessen.tijd_id = tijden.id WHERE klas_id = :id ORDER BY tijden.tijd");
     $stmt->bindParam(":id", $id);
     $stmt->execute();
     $result = $stmt->fetchAll();
@@ -87,7 +87,6 @@ function getStudent($id){
     $stmt = $conn->prepare("SELECT studenten.*, klassen.groepnaam AS klas_naam FROM studenten JOIN klassen ON studenten.klas_id = klassen.id WHERE studenten.id = :id");
     $stmt->bindParam(":id", $id);
     $stmt->execute();
-	$result = $stmt->fetch();
 	$conn = null;
 
 	return $stmt->fetch();
@@ -117,4 +116,30 @@ function getAllClasses(){
 	$conn = null;
 
 	return $stmt->fetchAll();
+}
+
+function getStudentsFromGroup($id)
+{
+	$conn = openDatabaseConnection();
+
+    $stmt = $conn->prepare("SELECT studenten.*, klassen.* FROM studenten
+	JOIN klassen ON studenten.klas_id = klassen.id
+	WHERE klassen.id = :id ORDER BY studenten.achternaam");
+    $stmt->bindParam(":id", $id);
+    $stmt->execute();
+	$conn = null;
+
+	return $stmt->fetchAll();
+}
+
+function getGroup($id)
+{
+	$conn = openDatabaseConnection();
+    $stmt = $conn->prepare("SELECT * FROM klassen WHERE id = :id");
+    $stmt->bindParam(":id", $id);
+    $stmt->execute();
+
+    $conn = null;
+ 
+    return $stmt->fetch();;
 }
