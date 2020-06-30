@@ -22,7 +22,9 @@ function addPlanning()
 {
 	$groep = $_POST['groepNaam'];
 	$les = $_POST['les'];
-	$result = checkPlanning($groep, $les);
+	$datum = $_POST['datum'];
+	createDatum($datum);
+	$result = checkPlanning($groep, $les, $datum);
 	if ($result){
 		$error = "Deze groep is al ingepland bij deze les";
 		$klassen = getAllGroups();
@@ -30,7 +32,7 @@ function addPlanning()
 		render("planning/createPlanning", ["klassen" => $klassen, "lessen" => $lessen, "error" => $error]);	
 	}
 	else{
-		newPlanning($groep, $les);
+		newPlanning($groep, $les, $datum);
 		agenda();
 	}
 

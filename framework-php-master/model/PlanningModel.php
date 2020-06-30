@@ -1,12 +1,13 @@
 <?php
 
-function newPlanning($data1, $data2)
+function newPlanning($data1, $data2, $data3)
 {
 	$conn = openDatabaseConnection();
 	
-	$stmt = $conn->prepare("INSERT INTO planning (klas_id, les_id) VALUES (:klas_id, :les_id)");
+	$stmt = $conn->prepare("INSERT INTO planning (klas_id, les_id, datum_id) VALUES (:klas_id, :les_id,(SELECT id FROM datum WHERE datum=:datum_id))");
 	$stmt->bindParam(":klas_id", $data1);
 	$stmt->bindParam(":les_id", $data2);
+	$stmt->bindParam(":datum_id", $data3);
 	$stmt->execute();
 	
 	$conn = null;
@@ -26,12 +27,13 @@ function getPlanning()
 	return $stmt->fetchAll();
 }
 
-function checkPlanning($klas, $les)
+function checkPlanning($klas, $les, $datum)
 {
 	$conn = openDatabaseConnection();
-	$stmt = $conn->prepare("SELECT * FROM planning WHERE klas_id = :klas AND les_id = :les");
+	$stmt = $conn->prepare("SELECT * FROM planning WHERE klas_id = :klas AND les_id = :les AND datum_id = (SELECT id FROM datum WHERE datum = :datum)");
 	$stmt->bindParam(":klas", $klas);
 	$stmt->bindParam(":les", $les);
+	$stmt->bindParam(":datum", $datum);
 	$stmt->execute();
 	return $stmt->fetch();
 	
@@ -93,4 +95,17 @@ function deletePlanningById($id)
     $stmt->execute();
 
     $conn = null;
+}
+
+function createDatum($datum)
+{
+	$conn = openDatabaseConnection();
+	$query1 = $conn->prepare("SELECT * FROM datum WHERE datum = :datum");
+	$query1->execute([":datum" => $datum]);
+	$result1 = $query1->fetch();
+ 
+	if ($result1 == false){
+		$query = $conn->prepare("INSERT INTO datum (datum) VALUES (:datum)");
+		return $query->execute([":datum" => $datum]);
+	}
 }
