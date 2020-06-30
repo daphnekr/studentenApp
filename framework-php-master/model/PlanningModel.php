@@ -17,7 +17,11 @@ function getPlanning()
 {
 	$conn = openDatabaseConnection();
 
-    $stmt = $conn->prepare("SELECT planning.id AS planning_id, planning.*, klassen.*, klassen.id AS klas_id, lessen.* FROM planning JOIN klassen ON planning.klas_id = klassen.id JOIN lessen ON planning.les_id = lessen.id");
+    $stmt = $conn->prepare("SELECT planning.id AS planning_id, planning.*, klassen.*, klassen.id AS klas_id, lessen.*, datum.*, tijden.*, leraar.* FROM planning JOIN klassen ON planning.klas_id = klassen.id 
+	JOIN lessen ON planning.les_id = lessen.id
+	JOIN tijden on lessen.tijd_id = tijden.id
+	JOIN leraar on lessen.leraar_id = leraar.id
+	JOIN datum on planning.datum_id = datum.id ORDER BY datum.datum");
     
 
 	$stmt->execute();
@@ -53,15 +57,16 @@ function getLesById($id)
     return $result;
 }
 
-function editPlanning($data1, $data2, $data3, $data4)
+function editPlanning($data1, $data2, $data3, $data4, $data5)
 {
 	$conn = openDatabaseConnection();
 
-    $stmt = $conn->prepare("UPDATE lessen SET les=:les, tijd_id=(SELECT id FROM tijden WHERE tijd=:tijd_id), leraar_id=(SELECT id FROM leraar WHERE id=:leraar_id) WHERE id=:id");
+    $stmt = $conn->prepare("UPDATE lessen SET les=:les, tijd_id=(SELECT id FROM tijden WHERE tijd=:tijd_id), tijdsduur=:tijdsduur, leraar_id=(SELECT id FROM leraar WHERE id=:leraar_id) WHERE id=:id");
 	$stmt->bindParam(":les", $data1);
 	$stmt->bindParam(":tijd_id", $data2);
-	$stmt->bindParam(":leraar_id", $data3);
-	$stmt->bindParam(":id", $data4);
+	$stmt->bindParam(":tijdsduur", $data3);
+	$stmt->bindParam(":leraar_id", $data4);
+	$stmt->bindParam(":id", $data5);
     $stmt->execute();
 
     $conn = null;

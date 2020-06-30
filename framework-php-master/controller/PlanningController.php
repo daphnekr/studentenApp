@@ -47,9 +47,10 @@ function modifyPlanning($id)
 {
 	$les = $_POST['les'];
 	$tijd = $_POST['tijd'];
+	$tijdsduur = $_POST['tijdsduur'];
 	$leraar = $_POST['leraar'];
 	createTime($tijd);
-	editPlanning($les, $tijd, $leraar, $id);
+	editPlanning($les, $tijd, $tijdsduur, $leraar, $id);
 	agenda();
 }  
 

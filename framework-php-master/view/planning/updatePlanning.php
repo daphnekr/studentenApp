@@ -5,8 +5,12 @@
                     <input class="form-control" type="text" placeholder="<?= $les['les']?>" name="les" value="<?= $les['les']?>" required>
             </div>
             <div class="form-group text-center text-dark">
-                <label for="achternaam">Tijd</label>
+                <label for="tijd">Tijd</label>
                     <input class="form-control" type="time" placeholder="<?= $les['tijd']?>" name="tijd" value="<?= $les['tijd']?>" required>
+            </div>
+            <div class="form-group text-center text-dark">
+                <label for="tijdsduur">Tijdsduur</label>
+                    <input class="form-control" type="number" placeholder="<?= $les['tijdsduur']?>" name="tijdsduur" value="<?= $les['tijdsduur']?>" required>
             </div>
             <div class="form-group text-center text-dark">
                 <label for="leraar"><h3>Leraar</h3></label> <br>
