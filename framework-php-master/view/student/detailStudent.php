@@ -26,6 +26,7 @@
         <div class = "col-5 border p-3">
             <h3 class = "text-center"> Planning </h3>
             <?php foreach ($planning as $plan){ ?>
+            <b>Datum:</b> <?= date("d-m-Y", strtotime($plan['datum'])); ?> <br>
             <b>Les:</b> <?= $plan['les']; ?> <br>
             <b>Tijd: </b> <?= date('H:i', strtotime($plan["tijd"])) ?> uur <br><br>
             <?php } 
