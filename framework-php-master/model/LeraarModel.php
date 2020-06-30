@@ -109,3 +109,28 @@ function editTeacher($data1, $data2, $data3, $data4)
 	$conn = null;
 
 }
+
+function getTeachersPlanning($data)
+{
+	$conn = openDatabaseConnection();
+
+	$stmt = $conn->prepare("SELECT planning.id AS planning_id, planning.*, klassen.id AS klasID, klassen.*, lessen.* FROM planning JOIN klassen ON planning.klas_id = klassen.id JOIN lessen ON planning.les_id = lessen.id WHERE klassen.`slb'er_id`=:id");
+	$stmt->bindParam(":id", $data);
+	$stmt->execute();
+
+	$conn = null;
+
+	return $stmt->fetchAll();
+}
+function getATime($data)
+{
+	$conn = openDatabaseConnection();
+
+	$stmt = $conn->prepare("SELECT lessen.id AS les_id, lessen.*, tijden.*, leraar.* FROM lessen JOIN tijden ON lessen.tijd_id=tijden.id JOIN leraar ON lessen.leraar_id = leraar.id WHERE leraar.id=:id ORDER BY tijd");
+	$stmt->bindParam(":id", $data);
+	$stmt->execute();
+
+	$conn = null;
+
+	return $stmt->fetchAll();
+}

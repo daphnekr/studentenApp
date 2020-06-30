@@ -21,7 +21,7 @@
                     <?php } ?>
                     </select>
             </div>
-            <div class="form-group text-center">
+            <div class="form-group text-center mb-5">
                 <input type="submit" value="Toevoegen" class="form-submit col-4 col-lg-3">
             </div>
         </form>

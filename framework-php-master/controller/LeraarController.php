@@ -19,6 +19,7 @@ function addTeacher()
 	newTeacher($VN, $AN, $KL);
 	createLeraar();
 }
+
 function updateLeraar($id)
 {
 	$slb = getOneTeacher($id);
@@ -32,4 +33,12 @@ function modifyTeacher($id)
 	$KL = $_POST['klas'];
 	editTeacher($VN, $AN, $KL, $id);
 	createLeraar();
+}
+
+function agendaLeraar($id)
+{
+	$slb = getOneTeacher($id);
+	$tijden = getATime($id);
+	$planning = getTeachersPlanning($id);
+	render("leraar/agendaLeraar", ["tijden" => $tijden, "slb" => $slb, "planning" => $planning]);
 }

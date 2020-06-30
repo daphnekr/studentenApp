@@ -28,6 +28,7 @@
                 <div class="row">
                     <div class="col-lg-4">
                         <a class="text-primary h4" href="<?= URL ?>leraar/updateLeraar/<?= $docent['id']?>"> <?= $docent['voornaam'] ?></a>
+                        <a class="text-primary h6" href="<?= URL ?>leraar/agendaLeraar/<?= $docent['id']?>">Agenda</a>
                     </div>
                     <div class="col-lg-5">
                         <h4 class="text-dark"> <?= $docent['achternaam'] ?></h4>
