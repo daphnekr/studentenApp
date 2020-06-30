@@ -18,6 +18,11 @@
                     </select><div class="text-danger"><?php echo $error;?></div>
             </div>
 
+            <div class="form-group text-center text-dark">
+                <label for="datum"><h3>Datum</h3></label>
+                    <input class="form-control" type="date" name="datum" required>
+            </div>
+
             
             <div class="form-group text-center">
                 <input type="submit" value="Toevoegen" class="form-submit col-4 col-lg-3">
