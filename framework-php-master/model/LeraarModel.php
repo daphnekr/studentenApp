@@ -113,11 +113,16 @@ function editTeacher($data1, $data2, $data3, $data4)
 function getTeachersPlanning($data)
 {
 	$conn = openDatabaseConnection();
-
-	$stmt = $conn->prepare("SELECT planning.id AS planning_id, planning.*, klassen.id AS klasID, klassen.*, lessen.* FROM planning JOIN klassen ON planning.klas_id = klassen.id JOIN lessen ON planning.les_id = lessen.id WHERE klassen.`slb'er_id`=:id");
+	
+	$stmt = $conn->prepare("SELECT planning.id AS planning_id, planning.*, klassen.*, klassen.id AS klas_id, lessen.*, datum.*, tijden.*, leraar.* FROM planning JOIN klassen ON planning.klas_id = klassen.id 
+	JOIN lessen ON planning.les_id = lessen.id
+	JOIN tijden on lessen.tijd_id = tijden.id
+	JOIN leraar on lessen.leraar_id = leraar.id
+	JOIN datum on planning.datum_id = datum.id 
+	WHERE lessen.leraar_id=:id ORDER BY datum.datum");
 	$stmt->bindParam(":id", $data);
 	$stmt->execute();
-
+	
 	$conn = null;
 
 	return $stmt->fetchAll();
