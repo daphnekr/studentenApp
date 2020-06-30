@@ -59,7 +59,8 @@ function getStudent($id){
 
     $stmt = $conn->prepare("SELECT * FROM planning
 	JOIN lessen ON planning.les_id = lessen.id
-	JOIN tijden ON lessen.tijd_id = tijden.id WHERE klas_id = :id ORDER BY tijden.tijd");
+	JOIN tijden ON lessen.tijd_id = tijden.id
+	JOIN datum on planning.datum_id = datum.id WHERE klas_id = :id ORDER BY datum.datum");
     $stmt->bindParam(":id", $id);
     $stmt->execute();
     $result = $stmt->fetchAll();
