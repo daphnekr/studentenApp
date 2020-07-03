@@ -1,5 +1,6 @@
 <?php
 require(ROOT . "model/LesModel.php");
+require(ROOT . "model/HomeModel.php");
 require(ROOT . "model/LeraarModel.php");
 require(ROOT . "model/StudentModel.php");
 require(ROOT . "model/PlanningModel.php");
@@ -12,10 +13,10 @@ function createLes()
 
 function addLes()
 {
-	$les = $_POST['les'];
-	$tijd = $_POST['tijd'];
-	$tijdsduur = $_POST['tijdsduur'];
-	$leraar = $_POST['leraar'];
+	$les = sanitize($_POST['les']);
+	$tijd = sanitize($_POST['tijd']);
+	$tijdsduur = sanitize($_POST['tijdsduur']);
+	$leraar = sanitize($_POST['leraar']);
 	
 	createTime($tijd);
 	newLes($les, $tijd, $tijdsduur, $leraar);

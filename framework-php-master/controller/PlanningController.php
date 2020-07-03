@@ -1,5 +1,6 @@
 <?php
 require(ROOT . "model/LesModel.php");
+require(ROOT . "model/HomeModel.php");
 require(ROOT . "model/LeraarModel.php");
 require(ROOT . "model/StudentModel.php");
 require(ROOT . "model/PlanningModel.php");
@@ -20,9 +21,9 @@ function createPlanning()
 }
 function addPlanning()
 {
-	$groep = $_POST['groepNaam'];
-	$les = $_POST['les'];
-	$datum = $_POST['datum'];
+	$groep = sanitize($_POST['groepNaam']);
+	$les = sanitize($_POST['les']);
+	$datum = sanitize($_POST['datum']);
 	createDatum($datum);
 	$result = checkPlanning($groep, $les, $datum);
 	if ($result){
@@ -45,10 +46,10 @@ function updatePlanning($id)
 }
 function modifyPlanning($id)
 {
-	$les = $_POST['les'];
-	$tijd = $_POST['tijd'];
-	$tijdsduur = $_POST['tijdsduur'];
-	$leraar = $_POST['leraar'];
+	$les = sanitize($_POST['les']);
+	$tijd = sanitize($_POST['tijd']);
+	$tijdsduur = sanitize($_POST['tijdsduur']);
+	$leraar = sanitize($_POST['leraar']);
 	createTime($tijd);
 	editPlanning($les, $tijd, $tijdsduur, $leraar, $id);
 	agenda();

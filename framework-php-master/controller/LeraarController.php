@@ -1,5 +1,6 @@
 <?php
 require(ROOT . "model/LesModel.php");
+require(ROOT . "model/HomeModel.php");
 require(ROOT . "model/LeraarModel.php");
 require(ROOT . "model/StudentModel.php");
 require(ROOT . "model/PlanningModel.php");
@@ -13,9 +14,9 @@ function createLeraar()
 }
 function addTeacher()
 {
-	$VN = $_POST['voornaam'];
-	$AN = $_POST['achternaam'];
-	$KL = $_POST['klas'];
+	$VN = sanitize($_POST['voornaam']);
+	$AN = sanitize($_POST['achternaam']);
+	$KL = sanitize($_POST['klas']);
 	newTeacher($VN, $AN, $KL);
 	createLeraar();
 }
@@ -28,9 +29,9 @@ function updateLeraar($id)
 }
 function modifyTeacher($id)
 {
-	$VN = $_POST['voornaam'];
-	$AN = $_POST['achternaam'];
-	$KL = $_POST['klas'];
+	$VN = sanitize($_POST['voornaam']);
+	$AN = sanitize($_POST['achternaam']);
+	$KL = sanitize($_POST['klas']);
 	editTeacher($VN, $AN, $KL, $id);
 	createLeraar();
 }

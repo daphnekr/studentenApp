@@ -1,5 +1,6 @@
 <?php
 require(ROOT . "model/LesModel.php");
+require(ROOT . "model/HomeModel.php");
 require(ROOT . "model/LeraarModel.php");
 require(ROOT . "model/StudentModel.php");
 require(ROOT . "model/PlanningModel.php");
@@ -17,22 +18,6 @@ function destroyStudent($id){
 	render("home/index", ["students" => $students, "groups" => $groups]);	
 }
 
-function createStudent()
-{
-	$klas = getAllGroups();
-	render("student/createStudent", ["klas" => $klas]);
-}
-function addStudent()
-{
-	$VN = $_POST['voornaam'];
-	$AN = $_POST['achternaam'];
-	$EM = $_POST['mail'];
-	$KL = $_POST['klas'];
-	newStudent($VN, $AN, $EM, $KL);
-	$students = getAllStudents();
-	$groups = getAllGroups();
-	render("home/index", ["students" => $students, "groups" => $groups]);	
-}
 function updateStudent($id)
 {
 	$klas = getAllGroups();
@@ -41,10 +26,10 @@ function updateStudent($id)
 }
 function modifyStudent($id)
 {
-	$VN = $_POST['voornaam'];
-	$AN = $_POST['achternaam'];
-	$EM = $_POST['mail'];
-	$KL = $_POST['klas'];
+	$VN = sanitize($_POST['voornaam']);
+	$AN = sanitize($_POST['achternaam']);
+	$EM = sanitize($_POST['mail']);
+	$KL = sanitize($_POST['klas']);
 	editStudent($VN, $AN, $EM, $KL, $id);
 	$students = getAllStudents();
 	$groups = getAllGroups();

@@ -10,6 +10,7 @@
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	<?php session_start();?>
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg bg-secondary">
@@ -26,7 +27,13 @@
 			</div>
 			<li class="d-inline pt-lg-5 pr-lg-5 pt-2 pr-2"><a class="text-white h5" href="<?= URL ?>les/createLes">Lessen</a></li>
 			<li class="d-inline pt-lg-5 pr-lg-5 pt-2 pr-2"><a class="text-white h5" href="<?= URL ?>leraar/createLeraar">Leraren</a></li>
-			<li class="d-inline float-right"><a class="text-white text-decoration-none" href="<?= URL ?>student/createStudent"><i class="fas fa-lg fa-user-plus"></i></a></li>
+			<?php if(isset($_SESSION['Loggedin'])){?>
+				<li class="d-inline float-right"><a class = "text-danger h5" href="<?= URL?>student/deletestudent/<?= $_SESSION['userID']; ?>"><i class="fas fa-times"></i></a></li> 
+                <li class="d-inline float-right pr-lg-3 pr-2"><a class = "text-primary h5" href="<?= URL?>student/updateStudent/<?= $_SESSION['userID']; ?>"><i class="fas fa-edit"></i></a></li> 
+			<?php } else{?>
+			<li class="d-inline float-right"><a class="text-white text-decoration-none" href="<?= URL ?>home/registerStudent"><i class="fas fa-lg fa-user-plus"></i></a></li>
+			<li class="d-inline float-right pr-lg-3 pr-2"><a class="text-white h5" href="<?= URL ?>home/loginStudent"><i class="fas fa-sign-in-alt"></i></a></li>
+			<?php }?>
 		</ul>
 	</div>
 	</nav>

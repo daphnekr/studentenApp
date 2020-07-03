@@ -59,8 +59,7 @@ function getStudent($id){
 
     $stmt = $conn->prepare("SELECT * FROM planning
 	JOIN lessen ON planning.les_id = lessen.id
-	JOIN tijden ON lessen.tijd_id = tijden.id
-	JOIN datum on planning.datum_id = datum.id WHERE klas_id = :id ORDER BY datum.datum");
+	JOIN tijden ON lessen.tijd_id = tijden.id WHERE klas_id = :id ORDER BY tijden.tijd");
     $stmt->bindParam(":id", $id);
     $stmt->execute();
     $result = $stmt->fetchAll();
@@ -73,7 +72,7 @@ function getStudent($id){
  function deleteStudentById($id){
     $conn = openDatabaseConnection();
 
-    $stmt = $conn->prepare("DELETE FROM planning WHERE student_id = :id; DELETE FROM studenten WHERE id = :id; ");
+    $stmt = $conn->prepare("DELETE FROM studenten WHERE id = :id;");
 
     $stmt->bindParam(":id", $id);
     $stmt->execute();
