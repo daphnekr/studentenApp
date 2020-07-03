@@ -1,6 +1,5 @@
 <div class="container">
  <h1 class = "text-danger"> Overzicht van studenten per klas</h1>
-
 <div class = "row">
 <?php foreach ($groups as $group){ ?>
     <div class = "col-4">
@@ -18,7 +17,7 @@
                         <b>Achternaam:</b><br>
                         <b>E-mailadres:</b><br>
                         <b>Klas:</b><br>
-                        <a class = "text-dark" href="<?= URL?>student/detailStudent/<?= $student['student_id']; ?>/<?= $student['klas_id']; ?>"><i class="fas fa-info-circle"></i></a>                         
+                        <a class = "text-dark" href="<?= URL?>student/detailStudent/<?= $student['studenten_id']; ?>/<?= $student['klas_id']; ?>"><i class="fas fa-info-circle"></i></a>                         
                     </div>
                     <div class = "col">
                         <?= $student['voornaam']; ?> <br>

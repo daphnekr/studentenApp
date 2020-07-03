@@ -12,7 +12,9 @@ function deleteStudent($id)
 }
 
 function destroyStudent($id){
-    deleteStudentById($id);
+	deleteStudentById($id);
+	session_start();
+	session_destroy();
 	$students = getAllStudents();
 	$groups = getAllGroups();
 	render("home/index", ["students" => $students, "groups" => $groups]);	

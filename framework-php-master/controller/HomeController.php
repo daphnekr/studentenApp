@@ -40,6 +40,8 @@ function plusStudent()
 }
 function logoutStudent()
 {
-	render("home/logoutStudent");
+	session_start();
+	session_destroy();
+	index();
 }
 

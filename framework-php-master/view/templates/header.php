@@ -28,7 +28,8 @@
 			<li class="d-inline pt-lg-5 pr-lg-5 pt-2 pr-2"><a class="text-white h5" href="<?= URL ?>les/createLes">Lessen</a></li>
 			<li class="d-inline pt-lg-5 pr-lg-5 pt-2 pr-2"><a class="text-white h5" href="<?= URL ?>leraar/createLeraar">Leraren</a></li>
 			<?php if(isset($_SESSION['Loggedin'])){?>
-				<li class="d-inline float-right"><a class = "text-danger h5" href="<?= URL?>student/deletestudent/<?= $_SESSION['userID']; ?>"><i class="fas fa-times"></i></a></li> 
+				<li class="d-inline float-right"><a class="text-white h5" href="<?= URL ?>home/logoutStudent"><i class="fas fa-sign-out-alt"></i></a></li>
+				<li class="d-inline float-right pr-lg-3 pr-2"><a class = "text-danger h5" href="<?= URL?>student/deletestudent/<?= $_SESSION['userID']; ?>"><i class="fas fa-times"></i></a></li> 
                 <li class="d-inline float-right pr-lg-3 pr-2"><a class = "text-primary h5" href="<?= URL?>student/updateStudent/<?= $_SESSION['userID']; ?>"><i class="fas fa-edit"></i></a></li> 
 			<?php } else{?>
 			<li class="d-inline float-right"><a class="text-white text-decoration-none" href="<?= URL ?>home/registerStudent"><i class="fas fa-lg fa-user-plus"></i></a></li>
